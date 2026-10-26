@@ -13,17 +13,17 @@ from sklearn.decomposition import TruncatedSVD
 
 # Import student starter script or check functions
 try:
-    import lab15_starter as student
+    import student_starter_script as student
 except ImportError:
     student = None
 
 
 def test_starter_file_exists():
-    assert os.path.exists("lab15_starter.py"), "lab15_starter.py is missing from the repository."
+    assert os.path.exists("student_starter_script.py"), "student_starter_script.py is missing from the repository."
 
 
 def test_dataset_loading():
-    assert student is not None, "Could not import lab15_starter.py"
+    assert student is not None, "Could not import student_starter_script.py"
     assert hasattr(student, "df"), "DataFrame 'df' is missing."
     assert len(student.df) > 100, "Dataset contains fewer than 100 rows."
     assert "text" in student.df.columns, "Column 'text' is missing from DataFrame."
