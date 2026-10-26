@@ -1,0 +1,121 @@
+Loading dataset...
+Loaded 3703 unstructured user posts.
+
+--- Raw Sample Post ---
+
+My Honda has a cable release that can be locked out with the ignition key.
+The valet key can be left with someone and will NOT unlock the trunk
+or enable the cable release.
+----------------------------------------
+Filtered Tokens:   ['honda', 'cable', 'release', 'locked', 'ignition', 'key', 'valet', 'key', 'left', 'someone', 'unlock', 'trunk']
+Stemmed Roots:     ['honda', 'cabl', 'releas', 'lock', 'ignit', 'key', 'valet', 'key', 'left', 'someon', 'unlock', 'trunk']
+Lemmatized Words:  ['honda', 'cable', 'release', 'lock', 'ignition', 'key', 'valet', 'key', 'leave', 'someone', 'unlock', 'trunk']
+
+Stemmer vs. Lemmatizer (tokens where outputs differ):
+   token porter_stem  lemma_v
+   cable        cabl    cable
+ release      releas  release
+ignition       ignit ignition
+    left        left    leave
+ someone      someon  someone
+  enable       enabl   enable
+   cable        cabl    cable
+ release      releas  release
+
+TF-IDF Matrix Shape: (3703, 4000) | Sparsity: 99.04%
+BoW Matrix Shape:    (3703, 4000) | Sparsity: 99.04%
+Top 10 words by average TF-IDF: know, like, just, don, does, car, use, thanks, good, think
+
+Cluster sizes: {0: 2400, 1: 71, 2: 529, 3: 703}
+
+Top 8 defining words per cluster (baseline TF-IDF):
+  Cluster 0: know, like, don, just, does, use, thanks, good
+  Cluster 1: cadre, dsl, n3jxp, chastity, surrender, intellect, shameful, skepticism
+  Cluster 2: car, cars, engine, new, just, ford, dealer, like
+  Cluster 3: mac, apple, drive, monitor, card, thanks, does, know
+
+TruncatedSVD explained variance (2 components): 0.0115
+
+[Challenge 1] Document frequency and IDF of filler words:
+  know    DF=22.74%  sklearn idf=2.480  plain log(N/DF)=1.481
+  like    DF=23.39%  sklearn idf=2.452  plain log(N/DF)=1.453
+  just    DF=21.20%  sklearn idf=2.550  plain log(N/DF)=1.551
+  think   DF=15.18%  sklearn idf=2.884  plain log(N/DF)=1.885
+  does    DF=17.31%  sklearn idf=2.753  plain log(N/DF)=1.754
+  use     DF=17.07%  sklearn idf=2.767  plain log(N/DF)=1.768
+  thanks  DF=13.04%  sklearn idf=3.035  plain log(N/DF)=2.037
+
+[Challenge 1] Baseline vs. cleaned cluster keywords:
+  Baseline cluster 0: know, like, don, just, does, use, thanks, good
+  Baseline cluster 1: cadre, dsl, n3jxp, chastity, surrender, intellect, shameful, skepticism
+  Baseline cluster 2: car, cars, engine, new, just, ford, dealer, like
+  Baseline cluster 3: mac, apple, drive, monitor, card, thanks, does, know
+  Cleaned  cluster 0: doctor, msg, soon, medical, disease, pain, patients, food
+  Cleaned  cluster 1: power, looking, phone, cars, high, current, circuit, number
+  Cleaned  cluster 2: mac, apple, drive, monitor, card, scsi, video, simms
+  Cleaned  cluster 3: car, cars, engine, dealer, oil, miles, ford, price
+  Purity  baseline=0.565 | cleaned=0.634
+
+[Challenge 2] Baseline crosstab (true_label x cluster):
+cluster                  0   1    2    3
+true_label                              
+comp.sys.mac.hardware  269   0    2  639
+rec.autos              396   0  507    2
+sci.electronics        860   0   20   60
+sci.med                875  71    0    2
+
+[Challenge 2] Cleaned-vectorizer crosstab:
+cluster_clean            0    1    2    3
+true_label                               
+comp.sys.mac.hardware    1  348  561    0
+rec.autos                5  554    2  344
+sci.electronics          2  879   45   14
+sci.med                563  384    1    0
+
+[Challenge 2] True label vs. dominant label of assigned (cleaned) cluster:
+predicted_label        comp.sys.mac.hardware  rec.autos  sci.electronics  sci.med
+true_label                                                                       
+comp.sys.mac.hardware                    561          0              348        1
+rec.autos                                  2        344              554        5
+sci.electronics                           45         14              879        2
+sci.med                                    1          0              384      563
+
+[Challenge 2] Electronics <-> Mac misclustered posts: 393
+  Top TF-IDF terms in misclustered hardware posts: mouse, keyboard, apple, print, software, printer, modem, price, computer, fax, card, duo, buy, address, machines
+  doc 6 [comp.sys.mac.hardware -> sci.electronics]: Huh? If I buy a 128M optical, I might lose my friends? Why - do they smell bad? :-) On a serious note, I have heard the tales about SyQuest failures. But I am c
+  doc 11 [comp.sys.mac.hardware -> sci.electronics]: The magnet trick will work. Be careful when you apply the white tape to the rubber carriage roller, it tells the scanner where the edge is and it can come off. 
+  doc 18 [comp.sys.mac.hardware -> sci.electronics]: I'd get the IIci. It's more expandable, just as fast, and preserves the option to run System 6. David Gutierrez drg@biomath.mda.uth.tmc.edu
+  Terms weighted highly in both categories: power, software, number, data, buy, chip, computer, run, old, pin, board, able
+
+[Challenge 2] Bigram (1,2) crosstab:
+cluster_bigram           0    1    2    3
+true_label                               
+comp.sys.mac.hardware    0    1  625  284
+rec.autos                3  417    1  484
+sci.electronics          1   15   63  861
+sci.med                560    0    2  386
+  Purity  baseline=0.565 | cleaned=0.634 | bigram=0.665
+  Bigram cluster 0 top phrases: kidney stones, long term, blood pressure, double blind, sci med, kidney stone
+  Bigram cluster 1 top phrases: oil change, honda civic, sports car, buy car, car car, bought car
+  Bigram cluster 2 top phrases: hard drive, hard disk, video card, power supply, pds slot, clock speed
+  Bigram cluster 3 top phrases: radio shack, radar detector, stuff deleted, power supply, mailing list, laser printers
+
+[Challenge 3] Longest post: doc 310 (11765 words) | Shortest post: doc 2721 (4 words)
+  BoW    L2 norm  longest=276.241  shortest=3.000  ratio=92.1x
+  TF-IDF L2 norm  longest=1.000  shortest=1.000
+  Short post text: In <1r1d2r$baf@umcc.umcc.umich.edu> dlc@umcc.umcc.umich.edu (David
+  Mean BoW L2 norm by post-length quartile: {'Q1 short': 3.42, 'Q2': 5.44, 'Q3': 7.71, 'Q4 long': 17.06}
+  KMeans on raw BoW counts -> cluster sizes: {0: 8, 1: 3692, 2: 1, 3: 2}
+  Median words per post in each BoW cluster: {0: 4421.0, 1: 83.0, 2: 11765.0, 3: 7538.0}
+  KMeans on TF-IDF         -> cluster sizes: {0: 2400, 1: 71, 2: 529, 3: 703}
+  Purity  BoW=0.257 | TF-IDF=0.565
+
+[Challenge 4] Audit for Document #412
+  True label: rec.autos | Assigned cluster: 0 (dominant label: sci.med)
+  Text: Could we plase cease this discussion. I fail to see why people feel the need to expound upon this issue for days and days on end. These areas are not meant for this type of discussion. If you feel the need to do such things, please take your thought elsewhere. Thanks.
+    discussion      0.4524
+    feel            0.3989
+    days            0.3855
+    need            0.2885
+    meant           0.2667
+  Euclidean distance to each centroid: {0: 0.9918, 1: 1.1859, 2: 1.0069, 3: 1.0051}
