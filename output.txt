@@ -1,0 +1,80 @@
+Loading dataset...
+Loaded 3703 unstructured user posts.
+
+--- Raw Sample Post ---
+
+My Honda has a cable release that can be locked out with the ignition key.
+The valet key can be left with someone and will NOT unlock the trunk
+or enable the cable release.
+----------------------------------------
+Filtered Tokens:   ['honda', 'cable', 'release', 'locked', 'ignition', 'key', 'valet', 'key', 'left', 'someone', 'unlock', 'trunk']
+Stemmed Roots:     ['honda', 'cabl', 'releas', 'lock', 'ignit', 'key', 'valet', 'key', 'left', 'someon', 'unlock', 'trunk']
+Lemmatized Words:  ['honda', 'cable', 'release', 'lock', 'ignition', 'key', 'valet', 'key', 'leave', 'someone', 'unlock', 'trunk']
+
+TF-IDF Matrix Shape: (3703, 4000) | Sparsity: 99.04%
+Cluster 0: know, like, don, just, does, use, thanks, good
+Cluster 1: dsl, cadre, n3jxp, chastity, shameful, surrender, intellect, skepticism
+Cluster 2: car, cars, engine, new, just, ford, dealer, like
+Cluster 3: mac, apple, drive, monitor, card, thanks, does, know
+
+=== Refined vectorizer: top words per cluster ===
+Cluster 0: geb, pitt, dsl, cadre, chastity, shameful, surrender, intellect
+Cluster 1: mac, apple, drive, monitor, card, scsi, video, problem
+Cluster 2: people, time, edu, information, new, work, problem, sure
+Cluster 3: car, cars, engine, oil, new, dealer, ford, miles
+
+'know' appears in 22.7% of posts
+
+=== Crosstab ===
+cluster                  0   1    2    3
+true_label                              
+comp.sys.mac.hardware  269   0    2  639
+rec.autos              396   0  507    2
+sci.electronics        860   0   20   60
+sci.med                875  71    0    2
+
+Majority label per cluster:
+ cluster
+0                  sci.med
+1                  sci.med
+2                rec.autos
+3    comp.sys.mac.hardware
+dtype: str
+
+Misclustered electronics<->mac posts: 60
+Top shared words in misclustered posts: ['card', 'drive', 'monitor', 'software', 'does', 'mhz', 'ram', 'board', 'help', 'pin', 'use', 'pc']
+
+--- sample misclustered post ---
+sci.electronics |  We use a CD-ROM based system here.  There are about 45 CD-ROM disks and a 4-disk changer hooked to a dedicated MS-DOS computer.  It contains scanned images of data book pages for several thousand parts.  When you ask it for something it knows about 
+
+--- sample misclustered post ---
+sci.electronics | We have a Sun CD-ROM drive which I would like to play audio CD's in. I have an old 10 watt amplifier which works fine when connected to a junk "Walkman" style AM/FM radio. This amp ties the common path of the earphone connection to ground.  However, 
+
+--- sample misclustered post ---
+sci.electronics | This is for a friend of mine. Please send answers directly to him (E-Mail adress see below )!   HIGHSPEED  ANALOG-DIGITAL PC-BOARD  Hello LAdies and Gentleman !  I am looking for a highspeed A/D PC-Board with a sampling rate above 250 MHz an a resolu
+
+=== Crosstab with bigrams ===
+cluster_bi              0    1    2    3
+true_label                              
+comp.sys.mac.hardware   0  234  674    2
+rec.autos               0  367   14  524
+sci.electronics         0  765  154   21
+sci.med                71  860   17    0
+Cluster 0: geb cadre, edu shameful, shameful surrender, dsl pitt, intellect geb, dsl, cadre, cadre dsl
+Cluster 1: like, don, just, use, know, good, people, think
+Cluster 2: mac, does, apple, thanks, know, drive, monitor, card
+Cluster 3: car, cars, engine, new, ford, just, oil, like
+
+Longest post  (#310, 72161 chars)
+Shortest post (#1159, 52 chars)
+BoW   L2 norm -> longest: 276.241 | shortest: 2.000
+TFIDF L2 norm -> longest: 1.000 | shortest: 1.000
+
+True label: rec.autos | Assigned cluster: 0
+
+Document #412 - top 5 TF-IDF features:
+  discussion      0.4524
+  feel            0.3989
+  days            0.3855
+  need            0.2885
+  meant           0.2667
