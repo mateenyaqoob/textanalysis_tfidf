@@ -29,7 +29,7 @@ In this activity, you will build an end-to-end NLP pipeline that standardizes me
 ├── README.md                 # Lab instructions, problem-solving prompts, and rubric
 ├── requirements.txt          # Python package dependencies
 ├── .gitignore                # Standard Python/Jupyter Git ignore rules
-├── lab15_starter.py          # Student starter script with TODO blocks (# %% cell compatible)
+├── student_starter_script.py          # Student starter script with TODO blocks (# %% cell compatible)
 ```
 
 ---
@@ -54,11 +54,11 @@ pip install -r requirements.txt
 ```
 
 ### 3. Run the Starter Script
-`lab15_starter.py` uses `# %%` interactive cell markers. You can either:
+`student_starter_script.py` uses `# %%` interactive cell markers. You can either:
 * Open it in **VS Code** (with the Jupyter extension) or **Spyder/PyCharm** to run cell-by-cell like a notebook, **or**
 * Run it directly from your terminal:
 ```bash
-python lab15_starter.py
+python student_starter_script.py
 ```
 *(The dataset downloads automatically via Scikit-Learn's `fetch_20newsgroups`—no manual CSV setup required!)*
 
@@ -85,7 +85,7 @@ Complete all `TODO` sections inside `lab15_starter.py`:
 
 ## Part 2: Problem-Solving Experience (20 Minutes)
 
-Create a new file named `ANSWERS.md` in your repository and answer the four diagnostic challenges below (supported by the code you write in **Step 4** of `lab15_starter.py`):
+Create a new file named `ANSWERS.md` in your repository and answer the four diagnostic challenges below (supported by the code you write in **Step 4** of `student_starter_script.py`):
 
 ### Challenge 1: Conversational Filler & Numeric Noise
 User posts contain conversational filler (`know`, `like`, `think`, `just`, `does`, `thanks`, `use`) and stray numbers that bypass standard English stopword lists.
@@ -117,7 +117,7 @@ Clone your newly created repository to your local machine or open it directly in
 
 Step 2: Complete the Programming & Problem-Solving Tasks
 
-Open lab15_starter.py in your code editor.
+Open student_starter_script.py in your code editor.
 Fill in the missing code blocks for Text Cleaning & Normalization, Bag-of-Words vs. TF-IDF Extraction, and K-Means Clustering as outlined in the script comments.
 Write your short answers for the Problem-Solving Questions as comments or within a markdown summary.
 

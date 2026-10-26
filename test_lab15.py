@@ -1,6 +1,6 @@
 """
 Automated Pytest Suite for Lab 15: TF-IDF & Unstructured Data Triage
-This script validates student implementations in lab15_starter.py.
+This script validates student implementations in student_starter_script.py.
 """
 
 import os
